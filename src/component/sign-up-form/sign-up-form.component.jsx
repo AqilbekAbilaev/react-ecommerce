@@ -33,7 +33,7 @@ const SignUpForm = () => {
             resetFormFields();
             
         } catch(e) {
-            if (e.code == 'auth/email-already-in-use') {
+            if (e.code === 'auth/email-already-in-use') {
                 alert("You cannot use this email because it is  lready in use.")
             } else {
                 console.log(e);
