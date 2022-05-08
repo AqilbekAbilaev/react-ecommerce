@@ -20,22 +20,23 @@ const SignInForm = () => {
     }
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response)
+            await signInAuthUserWithEmailAndPassword(email, password);
+            alert("Congratulations!!! You are logged in!")
             resetFormFields();
+
         } catch(e) {
-            if (e.code = "auth/wrong-password") {
+            // alert("Oh no you failed during logging in!")
+            if (e.code === "auth/wrong-password") {
                 alert("Wrong password")
             }
-            if (e.code = "auth/user-not-found") {
+            if (e.code === "auth/user-not-found") {
                 alert("You are not registered before.")
             }
             console.log(e);
